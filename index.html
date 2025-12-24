@@ -1,210 +1,489 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>마케팅 용어집</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marketing Terms – Portfolio Project</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #f5f6f8;
-      margin: 0;
-      padding: 40px;
-      line-height: 1.6;
-      color: #222;
+    :root{
+      --bg:#f5efe6;
+      --paper:#fffaf2;
+      --paper2:rgba(255,250,242,.88);
+      --ink:#2b2a28;
+      --muted:#6f6a62;
+      --line:#e6dccf;
+      --shadow:0 16px 34px rgba(43,42,40,.10);
+
+      --mint:#bfe6d4;
+      --lilac:#d6c8f2;
+
+      --r:22px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+              "Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic", Arial, sans-serif;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--ink);
+      background:
+        radial-gradient(900px 520px at 10% -10%, rgba(191,230,212,.45), transparent 60%),
+        radial-gradient(900px 520px at 105% 0%, rgba(214,200,242,.45), transparent 58%),
+        var(--bg);
     }
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 28px;
-      margin-bottom: 32px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+
+    .wrap{max-width:1100px;margin:0 auto;padding:26px 16px 70px}
+
+    /* Top brand */
+    .brand{
+      display:flex;align-items:center;gap:12px;
+      padding:14px 16px;
+      border-radius:var(--r);
+      background:rgba(255,250,242,.86);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+      cursor:pointer;
+      user-select:none;
     }
-    .term {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 6px;
+    .mark{
+      width:44px;height:44px;border-radius:16px;
+      background:linear-gradient(135deg,var(--mint),var(--lilac));
+      display:grid;place-items:center;
+      font-weight:900;
     }
-    .lead {
-      color: #555;
-      font-weight: 600;
-      margin-bottom: 16px;
+    .brand h1{margin:0;font-size:18px;letter-spacing:.2px}
+    .brand p{margin:6px 0 0;font-size:12px;color:var(--muted);line-height:1.4}
+
+    /* Intro */
+    .intro{
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      background:var(--paper2);
+      box-shadow:var(--shadow);
+      padding:20px;
+      margin-bottom:14px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
     }
-    .section {
-      margin-bottom: 14px;
+    @media(max-width:900px){.intro{grid-template-columns:1fr}}
+    .intro h2{margin:0;font-size:26px;line-height:1.25;letter-spacing:-.2px}
+    .intro p{margin:12px 0 0;font-size:13px;color:var(--muted);line-height:1.8}
+
+    .pillRow{display:flex;gap:8px;flex-wrap:wrap;align-content:flex-start}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.55);
+      font-size:12px;color:var(--muted);
+      white-space:nowrap;
     }
-    .label {
-      font-weight: 700;
-      margin-bottom: 4px;
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background:linear-gradient(135deg,var(--mint),var(--lilac));
+      border:1px solid rgba(230,220,207,.9);
     }
-    img {
-      width: 100%;
-      max-width: 700px;
-      display: block;
-      margin: 20px auto;
-      border-radius: 8px;
+
+    /* Cards */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      background:rgba(255,250,242,.86);
+      box-shadow:var(--shadow);
+      padding:16px 16px 15px;
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease;
+      outline:none;
+    }
+    .card:hover{transform:translateY(-2px); box-shadow:0 18px 36px rgba(43,42,40,.11)}
+    .card:focus-visible{box-shadow:0 0 0 3px rgba(214,200,242,.55), var(--shadow)}
+    .card h3{margin:0;font-size:16px;letter-spacing:.1px}
+    .card p{margin:8px 0 0;font-size:13px;color:var(--muted);line-height:1.6}
+
+    /* Detail */
+    .detail{display:none;border:1px solid var(--line);border-radius:var(--r);background:rgba(255,250,242,.92);box-shadow:var(--shadow)}
+    .detail.active{display:block}
+    .detailTop{padding:20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .back{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.55);
+      font-size:12px;color:var(--muted);
+      cursor:pointer;
+      padding:8px 10px;
+      border-radius:999px;
+    }
+    .detailHeader{min-width:0}
+    .detailTop h2{margin:0;font-size:24px;letter-spacing:-.2px}
+    .detailTop p{margin:8px 0 0;font-size:13px;color:var(--muted);line-height:1.7}
+
+    .detailBody{
+      padding:16px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    @media(max-width:900px){.detailBody{grid-template-columns:1fr}}
+    .box{
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      background:rgba(255,255,255,.55);
+      padding:14px;
+    }
+    .box h4{margin:0 0 8px;font-size:12px;letter-spacing:.2px;color:var(--muted)}
+    .box p{margin:0;font-size:13px;line-height:1.7;white-space:pre-wrap}
+
+    /* 이미지(뜻 박스 안에 넣을 때) */
+    .termImg{
+      width:100%;
+      margin-top:10px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      display:none; /* 기본 숨김 */
+    }
+
+    /* Footer + subtle team note */
+    footer{
+      margin-top:20px;
+      text-align:center;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+    .footActions{
+      margin-top:10px;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .linkBtn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.55);
+      color:var(--muted);
+      font-size:11px;
+      padding:8px 10px;
+      border-radius:999px;
+      cursor:pointer;
+    }
+    .linkBtn:hover{background:rgba(255,255,255,.7)}
+    .srOnly{
+      position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+    }
+
+    /* Modal */
+    dialog{
+      width:min(560px, calc(100% - 28px));
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:rgba(255,250,242,.96);
+      box-shadow:0 22px 44px rgba(43,42,40,.16);
+      padding:0;
+    }
+    dialog::backdrop{
+      background:rgba(43,42,40,.28);
+    }
+    .modalTop{
+      padding:16px 16px 14px;
+      border-bottom:1px solid var(--line);
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+    }
+    .modalTop h3{margin:0;font-size:14px;letter-spacing:.2px}
+    .closeBtn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.55);
+      color:var(--muted);
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      cursor:pointer;
+    }
+    .modalBody{padding:14px 16px 16px}
+    .roleRows{
+      border-top:1px solid var(--line);
+      margin-top:10px;
+    }
+    .roleRow{
+      display:grid;
+      grid-template-columns:92px 1fr;
+      gap:12px;
+      padding:10px 2px;
+      border-bottom:1px solid var(--line);
+    }
+    @media(max-width:520px){
+      .roleRow{grid-template-columns:78px 1fr}
+    }
+    .roleWho{font-size:12px;font-weight:700}
+    .roleWhat{font-size:12px;color:var(--muted);line-height:1.6}
+    .roleNote{
+      margin:10px 0 0;
+      font-size:10px;
+      color:var(--muted);
+      opacity:.75;
+      text-align:right;
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
 
-  <h1>마케팅 용어집</h1>
-
-  <!-- SEO -->
-  <div class="card">
-    <div class="term">SEO (Search Engine Optimization)</div>
-    <div class="lead">검색 결과 상단에 자연스럽게 노출시키는 방법</div>
-
-    <img src="seo.png" alt="SEO 유료 검색과 오가닉 검색 비교 이미지">
-
-    <div class="section">
-      <div class="label">뜻</div>
-      광고비 없이 검색 결과에서 웹페이지 노출과 순위를 높이는 작업
+    <div class="brand" onclick="showHome()" role="button" tabindex="0" aria-label="홈으로 이동">
+      <div class="mark" aria-hidden="true">☕</div>
+      <div>
+        <h1>Marketing Terms</h1>
+        <p>콘텐츠 구조 설계 · 개인 포트폴리오 프로젝트</p>
+      </div>
     </div>
 
-    <div class="section">
-      <div class="label">설명</div>
-      사람들이 직접 검색하는 키워드에 맞춰<br>
-      콘텐츠 구조·제목·본문을 최적화해 자연 유입을 늘린다.
-    </div>
+    <section class="intro" aria-label="프로젝트 소개">
+      <div>
+        <h2>
+          마케팅 초입 단계에서<br/>
+          개념을 이해 가능한 구조로 정리
+        </h2>
+        <p>
+          단순 정의가 아니라 <b>업무 맥락에서 바로 이해</b>할 수 있도록<br/>
+          정보의 순서와 화면 흐름을 설계했습니다.
+        </p>
+      </div>
+      <div class="pillRow" aria-label="프로젝트 특징">
+        <span class="pill"><span class="dot" aria-hidden="true"></span>클릭 → 상세로 자연스럽게 이동</span>
+        <span class="pill"><span class="dot" aria-hidden="true"></span>뜻/설명/중요 포인트 분리</span>
+        <span class="pill"><span class="dot" aria-hidden="true"></span>쉬운 문장</span>
+      </div>
+    </section>
 
-    <div class="section">
-      <div class="label">왜 중요한가</div>
-      한 번 잘 만들어두면 광고비 없이도<br>
-      지속적인 유입과 전환을 만들 수 있다.
-    </div>
+    <section id="home" aria-label="용어 목록">
+      <div class="grid" id="cards"></div>
+    </section>
+
+    <section class="detail" id="detail" aria-label="용어 상세">
+      <div class="detailTop">
+        <div class="detailHeader">
+          <h2 id="dTitle"></h2>
+          <p id="dLead"></p>
+        </div>
+        <button class="back" onclick="showHome()">← 목록으로</button>
+      </div>
+
+      <div class="detailBody">
+        <div class="box">
+          <h4>뜻</h4>
+          <p id="dMeaning"></p>
+          <!-- 여기(뜻 박스)에 이미지를 넣음 -->
+          <img id="dMeaningImg" class="termImg" alt="용어 이미지">
+        </div>
+
+        <div class="box">
+          <h4>설명</h4>
+          <p id="dDesc"></p>
+        </div>
+
+        <div class="box">
+          <h4>왜 중요한가</h4>
+          <p id="dWhy"></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      개인 프로젝트 ｜ 마케팅 기초 개념 구조화 · 설명형 UX 설계
+      <div class="footActions">
+        <button class="linkBtn" id="openRoles">팀 프로젝트(역할) 보기</button>
+      </div>
+    </footer>
+
+    <dialog id="rolesDialog" aria-label="팀원 역할">
+      <div class="modalTop">
+        <h3>팀원 역할</h3>
+        <button class="closeBtn" id="closeRoles">닫기</button>
+      </div>
+      <div class="modalBody">
+        <div class="roleRows">
+          <div class="roleRow">
+            <span class="roleWho">혜지</span>
+            <span class="roleWhat">구조 설계 · 콘텐츠 문구 정리</span>
+          </div>
+          <div class="roleRow">
+            <span class="roleWho">팀원 A</span>
+            <span class="roleWhat">자료 조사 · 용어 1차 정리</span>
+          </div>
+          <div class="roleRow">
+            <span class="roleWho">팀원 B</span>
+            <span class="roleWhat">UX 아이디어 · 화면 흐름 제안</span>
+          </div>
+          <div class="roleRow">
+            <span class="roleWho">팀원 C</span>
+            <span class="roleWhat">가독성 피드백 · 문장 다듬기</span>
+          </div>
+          <div class="roleRow">
+            <span class="roleWho">팀원 D</span>
+            <span class="roleWhat">전체 검토 · 누락 항목 체크</span>
+          </div>
+        </div>
+        <p class="roleNote">※ 역할 표기는 제출용으로 간단히 정리했습니다.</p>
+      </div>
+    </dialog>
+
   </div>
 
-  <!-- AARRR -->
-  <div class="card">
-    <div class="term">AARRR (해적 지표)</div>
-    <div class="lead">고객 행동을 5단계로 보는 성장 지표</div>
+  <script>
+    // ✅ 같은 폴더(루트)에 seo.png / aarrr.png 파일을 두면 바로 뜸
+    const TERMS = [
+      {
+        term:"SEO (Search Engine Optimization)",
+        lead:"검색 결과 상단에 자연스럽게 노출시키는 방법",
+        meaning:"광고비 없이 검색 결과에서 웹페이지 노출과 순위를 높이는 작업",
+        meaningImage:"seo.png",
+        desc:"사람들이 직접 검색하는 키워드에 맞춰\n콘텐츠 구조·제목·본문을 최적화해 자연 유입을 늘린다.",
+        why:"한 번 잘 만들어두면 광고비 없이도\n지속적인 유입과 전환을 만들 수 있다."
+      },
+      {
+        term:"AARRR (해적 지표)",
+        lead:"고객 행동을 5단계로 보는 성장 지표",
+        meaning:"사용자가 서비스에 들어와서\n경험하고 → 다시 오고 → 추천하고 → 돈을 쓰는 과정을\n5단계로 나눠 관리하는 프레임워크",
+        // ✅ “뜻” 박스에 이미지 넣고 싶다 = 여기!
+        meaningImage:"aarrr.png",
+        desc:"Acquisition(유입)\nActivation(첫 경험)\nRetention(유지)\nRevenue(수익)\nReferral(추천)",
+        why:"문제가 “어디서 새는지”를 바로 알 수 있어\n무엇부터 고쳐야 할지 판단하기 쉽다."
+      },
+      {
+        term:"노출 (Impression)",
+        lead:"광고가 보여진 횟수",
+        meaning:"광고나 콘텐츠가 사용자 화면에 나타난 총 횟수",
+        desc:"같은 사람이 여러 번 봐도\n본 횟수만큼 모두 카운트된다.",
+        why:"광고가 얼마나 자주 보여졌는지 확인해\n인지 확산 정도를 판단할 수 있다."
+      },
+      {
+        term:"도달 (Reach)",
+        lead:"광고를 본 사람 수",
+        meaning:"광고나 콘텐츠를 한 번이라도 본 ‘사람의 수’",
+        desc:"한 사람이 여러 번 봐도\n도달은 1명으로 계산된다.",
+        why:"새로운 사람에게 얼마나 퍼졌는지 알 수 있어\n타겟 확장 여부를 판단할 수 있다."
+      },
+      {
+        term:"CRM (Customer Relationship Management)",
+        lead:"기존 고객을 관리하는 마케팅",
+        meaning:"고객 데이터를 기반으로\n관계를 유지하고 재구매를 유도하는 전략",
+        desc:"구매 이력, 행동 데이터를 활용해\n쿠폰·알림·추천 메시지를 개인화한다.",
+        why:"신규 유입보다 적은 비용으로\n매출과 충성도를 동시에 높일 수 있다."
+      },
+      {
+        term:"Paid Media (페이드 미디어)",
+        lead:"돈을 내고 노출하는 광고",
+        meaning:"광고비를 지불하고 사용하는 유료 미디어",
+	meaningImage:"pocar.png",
+        desc:"검색 광고, 배너 광고, SNS 유료 광고 등이 포함된다.",
+        why:"짧은 시간 안에\n많은 사람에게 빠르게 알릴 수 있다."
+      },
+      {
+        term:"Owned Media (온드 미디어)",
+        lead:"브랜드가 직접 운영하는 채널",
+        meaning:"기업이 소유하고 통제하는 자체 미디어",
+        desc:"자사몰, 블로그, SNS, 앱, 뉴스레터 등",
+        why:"광고비 없이\n고객과 장기적인 관계를 만들 수 있다."
+      },
+      {
+        term:"Earned Media (언드 미디어)",
+        lead:"소비자가 만들어주는 노출",
+        meaning:"소비자나 제3자가 자발적으로 확산시키는 미디어",
+        desc:"후기, 리뷰, SNS 공유, 기사 노출 등",
+        why:"신뢰도가 높고\n광고보다 전환력이 강하다."
+      },
+      {
+        term:"퍼포먼스 마케팅",
+        lead:"성과로 평가하는 마케팅",
+        meaning:"클릭, 전환, 매출 등\n숫자로 성과를 측정하는 마케팅",
+        desc:"성과가 좋은 광고는 확대하고\n안 좋은 광고는 바로 개선한다.",
+        why:"한정된 예산으로\n가장 효율적인 결과를 만들 수 있다."
+      }
+    ];
 
-    <img src="aarrr.png" alt="AARRR 해적지표 설명 이미지">
+    const cards = document.getElementById("cards");
+    const detail = document.getElementById("detail");
+    const home = document.getElementById("home");
 
-    <div class="section">
-      <div class="label">뜻</div>
-      사용자가 서비스에 들어와서<br>
-      경험하고 → 다시 오고 → 추천하고 → 돈을 쓰는 과정을<br>
-      5단계로 나눠 관리하는 프레임워크
-    </div>
+    const dTitle = document.getElementById("dTitle");
+    const dLead = document.getElementById("dLead");
+    const dMeaning = document.getElementById("dMeaning");
+    const dDesc = document.getElementById("dDesc");
+    const dWhy = document.getElementById("dWhy");
+    const dMeaningImg = document.getElementById("dMeaningImg");
 
-    <div class="section">
-      <div class="label">설명</div>
-      Acquisition(유입)<br>
-      Activation(첫 경험)<br>
-      Retention(유지)<br>
-      Revenue(수익)<br>
-      Referral(추천)
-    </div>
+    function showHome(){
+      detail.classList.remove("active");
+      home.style.display="block";
+      window.scrollTo({top:0, behavior:"instant"});
+    }
 
-    <div class="section">
-      <div class="label">왜 중요한가</div>
-      문제가 어디서 새는지 바로 보여줘<br>
-      무엇부터 고쳐야 할지 판단하기 쉽다.
-    </div>
-  </div>
+    function showDetail(i){
+      const t = TERMS[i];
+      dTitle.innerText = t.term;
+      dLead.innerText = t.lead;
+      dMeaning.innerText = t.meaning;
+      dDesc.innerText = t.desc;
+      dWhy.innerText = t.why;
 
-  <!-- Impression -->
-  <div class="card">
-    <div class="term">노출 (Impression)</div>
-    <div class="lead">광고가 보여진 횟수</div>
+      // ✅ 뜻 박스 이미지(SEO/ AARRR만 표시)
+      if(t.meaningImage){
+        dMeaningImg.src = t.meaningImage;
+        dMeaningImg.alt = t.term + " 이미지";
+        dMeaningImg.style.display = "block";
+      }else{
+        dMeaningImg.removeAttribute("src");
+        dMeaningImg.style.display = "none";
+      }
 
-    <div class="section">
-      <div class="label">뜻</div>
-      광고나 콘텐츠가 사용자 화면에 나타난 총 횟수
-    </div>
+      home.style.display="none";
+      detail.classList.add("active");
+      window.scrollTo({top:0, behavior:"instant"});
+    }
 
-    <div class="section">
-      <div class="label">설명</div>
-      같은 사람이 여러 번 봐도<br>
-      본 횟수만큼 모두 카운트된다.
-    </div>
+    cards.innerHTML = TERMS.map((t,i)=>`
+      <div class="card" role="button" tabindex="0"
+        onclick="showDetail(${i})"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); showDetail(${i});}">
+        <h3>${t.term}</h3>
+        <p>${t.lead}</p>
+      </div>
+    `).join("");
 
-    <div class="section">
-      <div class="label">왜 중요한가</div>
-      광고가 얼마나 자주 보여졌는지 확인해<br>
-      인지도 확산 정도를 판단할 수 있다.
-    </div>
-  </div>
+    // Subtle roles dialog (footer)
+    const rolesDialog = document.getElementById("rolesDialog");
+    const openRoles = document.getElementById("openRoles");
+    const closeRoles = document.getElementById("closeRoles");
 
-  <!-- Reach -->
-  <div class="card">
-    <div class="term">도달 (Reach)</div>
-    <div class="lead">광고를 본 사람 수</div>
+    function openDialog(){
+      if(typeof rolesDialog.showModal === "function") rolesDialog.showModal();
+      else rolesDialog.setAttribute("open","open");
+    }
+    function closeDialog(){
+      rolesDialog.close?.();
+      rolesDialog.removeAttribute("open");
+    }
 
-    <div class="section">
-      <div class="label">뜻</div>
-      광고나 콘텐츠를 한 번이라도 본 사람의 수
-    </div>
+    openRoles.addEventListener("click", openDialog);
+    closeRoles.addEventListener("click", closeDialog);
+    rolesDialog.addEventListener("click", (e)=>{
+      const rect = rolesDialog.getBoundingClientRect();
+      const isInDialog = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right;
+      if(!isInDialog) closeDialog();
+    });
 
-    <div class="section">
-      <div class="label">설명</div>
-      한 사람이 여러 번 봐도<br>
-      도달은 1명으로 계산된다.
-    </div>
-
-    <div class="section">
-      <div class="label">왜 중요한가</div>
-      새로운 사람에게 얼마나 퍼졌는지 알 수 있어<br>
-      타겟 확장 여부를 판단할 수 있다.
-    </div>
-  </div>
-
-  <!-- CRM -->
-  <div class="card">
-    <div class="term">CRM (Customer Relationship Management)</div>
-    <div class="lead">기존 고객을 관리하는 마케팅</div>
-
-    <div class="section">
-      <div class="label">뜻</div>
-      고객 데이터를 기반으로 관계를 유지하고 재구매를 유도하는 전략
-    </div>
-
-    <div class="section">
-      <div class="label">설명</div>
-      구매 이력과 행동 데이터를 활용해<br>
-      쿠폰·알림·추천 메시지를 개인화한다.
-    </div>
-
-    <div class="section">
-      <div class="label">왜 중요한가</div>
-      신규 유입보다 적은 비용으로<br>
-      매출과 충성도를 동시에 높일 수 있다.
-    </div>
-  </div>
-
-  <!-- Performance Marketing -->
-  <div class="card">
-    <div class="term">퍼포먼스 마케팅</div>
-    <div class="lead">성과로 평가하는 마케팅</div>
-
-    <img src="pocar.png" alt="광고 퍼포먼스 예시 이미지">
-
-    <div class="section">
-      <div class="label">뜻</div>
-      클릭, 전환, 매출 등 숫자로 성과를 측정하는 마케팅
-    </div>
-
-    <div class="section">
-      <div class="label">설명</div>
-      성과가 좋은 광고는 확대하고<br>
-      성과가 나쁜 광고는 빠르게 개선한다.
-    </div>
-
-    <div class="section">
-      <div class="label">왜 중요한가</div>
-      한정된 예산으로<br>
-      가장 효율적인 결과를 만들 수 있다.
-    </div>
-  </div>
-
+    // Brand header keyboard support
+    document.querySelector(".brand").addEventListener("keydown", (e)=>{
+      if(e.key==="Enter"||e.key===" "){ e.preventDefault(); showHome(); }
+    });
+  </script>
 </body>
 </html>
