@@ -258,7 +258,7 @@
       </div>
       <div class="pillRow" aria-label="프로젝트 특징">
         <span class="pill"><span class="dot" aria-hidden="true"></span>클릭 → 상세로 자연스럽게 이동</span>
-        <span class="pill"><span class="dot" aria-hidden="true"></span>뜻/설명/중요 포인트 분리</span>
+        <span class="pill"><span class="dot" aria-hidden="true"></span>뜻/예시/중요 포인트 분리</span>
         <span class="pill"><span class="dot" aria-hidden="true"></span>쉬운 문장</span>
       </div>
     </section>
@@ -280,12 +280,11 @@
         <div class="box">
           <h4>뜻</h4>
           <p id="dMeaning"></p>
-          <!-- 여기(뜻 박스)에 이미지를 넣음 -->
           <img id="dMeaningImg" class="termImg" alt="용어 이미지">
         </div>
 
         <div class="box">
-          <h4>설명</h4>
+          <h4>예시</h4>
           <p id="dDesc"></p>
         </div>
 
@@ -319,7 +318,7 @@
             <span class="roleWhat">자료 조사 · 용어 1차 정리</span>
           </div>
           <div class="roleRow">
-            <span class="roleWho"> B</span>
+            <span class="roleWho">B</span>
             <span class="roleWhat">UX 아이디어 · 화면 흐름 제안</span>
           </div>
           <div class="roleRow">
@@ -340,73 +339,109 @@
   <script>
     // ✅ 같은 폴더(루트)에 seo.png / aarrr.png 파일을 두면 바로 뜸
     const TERMS = [
-  {
-    term:"1. AARRR (해적 지표)",
-    lead:"고객 행동을 5단계로 보는 성장 지표",
-    meaning:"사용자가 서비스에 들어와서\n경험하고 → 다시 오고 → 추천하고 → 돈을 쓰는 과정을\n5단계로 나눠 관리하는 프레임워크",
-    meaningImage:"aarrr.png",
-    desc:"Acquisition(유입)\nActivation(첫 경험)\nRetention(유지)\nRevenue(수익)\nReferral(추천)",
-    why:"문제가 “어디서 새는지”를 바로 알 수 있어\n무엇부터 고쳐야 할지 판단하기 쉽다."
-  },
-  {
-    term:"2. Paid Media (페이드 미디어)",
-    lead:"돈을 내고 노출하는 광고",
-    meaning:"광고비를 지불하고 사용하는 유료 미디어",
-    meaningImage:"pocar.png",
-    desc:"검색 광고, 배너 광고, SNS 유료 광고 등이 포함된다.",
-    why:"짧은 시간 안에\n많은 사람에게 빠르게 알릴 수 있다."
-  },
-  {
-    term:"3. Owned Media (온드 미디어)",
-    lead:"브랜드가 직접 운영하는 채널",
-    meaning:"기업이 소유하고 통제하는 자체 미디어",
-    desc:"자사몰, 블로그, SNS, 앱, 뉴스레터 등",
-    why:"광고비 없이\n고객과 장기적인 관계를 만들 수 있다."
-  },
-  {
-    term:"4. Earned Media (언드 미디어)",
-    lead:"소비자가 만들어주는 노출",
-    meaning:"소비자나 제3자가 자발적으로 확산시키는 미디어",
-    desc:"후기, 리뷰, SNS 공유, 기사 노출 등",
-    why:"신뢰도가 높고\n광고보다 전환력이 강하다."
-  },
-  {
-    term:"5. SEO (Search Engine Optimization)",
-    lead:"검색 결과 상단에 자연스럽게 노출시키는 방법",
-    meaning:"광고비 없이 검색 결과에서 웹페이지 노출과 순위를 높이는 작업",
-    meaningImage:"seo.png",
-    desc:"사람들이 직접 검색하는 키워드에 맞춰\n콘텐츠 구조·제목·본문을 최적화해 자연 유입을 늘린다.",
-    why:"한 번 잘 만들어두면 광고비 없이도\n지속적인 유입과 전환을 만들 수 있다."
-  },
-  {
-    term:"6. 노출 (Impression)",
-    lead:"광고가 보여진 횟수",
-    meaning:"광고나 콘텐츠가 사용자 화면에 나타난 총 횟수",
-    desc:"같은 사람이 여러 번 봐도\n본 횟수만큼 모두 카운트된다.",
-    why:"광고가 얼마나 자주 보여졌는지 확인해\n인지 확산 정도를 판단할 수 있다."
-  },
-  {
-    term:"7. 도달 (Reach)",
-    lead:"광고를 본 사람 수",
-    meaning:"광고나 콘텐츠를 한 번이라도 본 ‘사람의 수’",
-    desc:"한 사람이 여러 번 봐도\n도달은 1명으로 계산된다.",
-    why:"새로운 사람에게 얼마나 퍼졌는지 알 수 있어\n타겟 확장 여부를 판단할 수 있다."
-  },
-  {
-    term:"8. CRM (Customer Relationship Management)",
-    lead:"기존 고객을 관리하는 마케팅",
-    meaning:"고객 데이터를 기반으로\n관계를 유지하고 재구매를 유도하는 전략",
-    desc:"구매 이력, 행동 데이터를 활용해\n쿠폰·알림·추천 메시지를 개인화한다.",
-    why:"신규 유입보다 적은 비용으로\n매출과 충성도를 동시에 높일 수 있다."
-  },
-  {
-    term:"9. 퍼포먼스 마케팅",
-    lead:"성과로 평가하는 마케팅",
-    meaning:"클릭, 전환, 매출 등\n숫자로 성과를 측정하는 마케팅",
-    desc:"성과가 좋은 광고는 확대하고\n안 좋은 광고는 바로 개선한다.",
-    why:"한정된 예산으로\n가장 효율적인 결과를 만들 수 있다."
-  }
-];
+      {
+        term:"1. AARRR (해적 지표)",
+        lead:"고객 행동을 5단계로 보는 성장 지표",
+        meaning:"사용자가 서비스에 들어와서\n경험하고 → 다시 오고 → 돈을 쓰고 → 추천 하는 과정을 5단계로 나눠 관리하는 프레임워크",
+        meaningImage:"aarrr.png",
+        desc:
+"[Acquisition]\n(우리 서비스에 처음 방문한 사용자 수)\n\n- 네이버 검색 → 브랜드 사이트 방문\n- 인스타 광고 → 랜딩페이지 유입\n- 앱 설치 수, 웹 방문자 수\n\n" +
+"[Activation]\n(처음 방문한 사용자가 ‘아~ 이거 괜찮네’\n라고 느끼는 첫 경험)\n\n- 회원가입 완료\n- 첫 게시글 읽기\n- 앱 첫 실행 후 핵심 기능 사용\n- 무료 체험 시작\n\n" +
+"[Retention]\n(사용자가 다시 돌아오는가, 계속 사용하는가)\n\n- 7일 후 재방문율\n- 앱 주간 활성 사용자(WAU)\n- 이메일 열람, 재구매\n\n" +
+"[Revenue]\n(사용자가 실제로 돈을 쓰는 단계)\n\n- 유료 결제\n- 구독 전환\n- 광고 클릭 수익\n\n" +
+"[Referral]\n(기존 사용자가 새로운 사용자를 데려오는 단계)\n\n- 친구 초대 링크\n- 후기 작성\n- SNS 공유\n- 추천 코드\n\n" +
+"⚠️ 실무에서 꼭 알아야 할 포인트\n\n" +
+"- 모든 단계가 동시에 중요하지는 않다\n" +
+"- 초반 서비스 → Acquisition, Activation\n" +
+"- 성장기 → Retention\n" +
+"- 안정기 → Revenue, Referral\n\n" +
+"👉 지금 우리 서비스가 어디서 새고 있는지 찾는 도구",
+        why:"문제가 “어디서 새는지”를 바로 알 수 있어\n무엇부터 고쳐야 할지 판단하기 쉽다."
+      },
+      {
+        term:"2. Paid Media (페이드 미디어)",
+        lead:" 'CF광고'\n돈을 내고 노출하는 광고",
+        meaning:"광고비를 지불하고 사용하는 유료 미디어",
+        meaningImage:"pocar.png",
+        desc:"TV, 라디오, 신문 광고, 포털 사이트 배너(DA), 검색 광고(SA), SNS 유료 광고, 인플루언서 유료 협찬.",
+        why:"짧은 시간 안에\n많은 사람에게 빠르게 알릴 수 있다."
+      },
+      {
+        term:"3. Owned Media (온드 미디어)",
+        lead:"브랜드가 직접 운영하는 채널",
+        meaning:"기업이 소유하고 통제하는 자체 미디어",
+        desc:"자사몰, 블로그, SNS, 앱, 뉴스레터 등",
+        why:"광고비 없이\n고객과 장기적인 관계를 만들 수 있다."
+      },
+      {
+        term:"4. Earned Media (언드 미디어)",
+        lead:"소비자가 만들어주는 노출",
+        meaning:"소비자나 제3자가 자발적으로 확산시키는 미디어",
+        desc:"후기, 리뷰, SNS 공유, 기사 노출 등",
+        why:"신뢰도가 높고\n광고보다 전환력이 강하다."
+      },
+      {
+        term:"5. SEO (Search Engine Optimization)",
+        lead:"검색 결과 상단에 자연스럽게 노출시키는 방법",
+        meaning:"광고비 없이 검색 결과에서 웹페이지 노출과 순위를 높이는 작업",
+        meaningImage:"seo.png",
+        desc:"- “강아지 사료 추천” 검색 시\n→ 광고가 아닌 블로그/웹페이지가 상단에 자연 노출\n- 기업 블로그, 브랜드 콘텐츠를 검색 결과 1페이지에 올리는 작업",
+        why:"한 번 잘 만들어두면 광고비 없이도\n지속적인 유입과 전환을 만들 수 있다."
+      },
+      {
+	  term:"6. 노출 (Impression)",
+	  lead:"광고가 보여진 횟수",
+ 	 meaning:"광고나 콘텐츠가 사용자 화면에 나타난 총 횟수",
+ 	 desc:
+	"노출(Impression): 광고가 보여진 총 횟수\n\n" +
+	"예를 들어,\n" +
+	"한 사람이 같은 광고를 3번 보면\n" +
+	"→ 노출은 3, 도달은 1\n\n" +
+	"헷갈릴 때는 이렇게 기억하면 됩니다.\n" +
+	"몇 번 보여졌나 = 노출",
+  	why:"광고 빈도와 반복 노출 정도를 파악해\n브랜드 인지도 확산 여부를 판단할 수 있다."
+	},
+  	{
+	  term:"7. 도달 (Reach)",
+  	lead:"광고를 본 사람 수",
+ 	 meaning:"광고나 콘텐츠를 한 번이라도 본 ‘사람의 수’",
+ 	 desc:"한 사람이 여러 번 봐도\n도달은 1명으로 계산된다.",
+  	why:"새로운 사람에게 얼마나 퍼졌는지 알 수 있어\n타겟 확장 여부를 판단할 수 있다."
+	},
+      {
+        term:"8. CRM (Customer Relationship Management)",
+        lead:"기존 고객을 관리하는 마케팅",
+        meaning:"고객 데이터를 기반으로\n관계를 유지하고 재구매를 유도하는 전략",
+        desc:"- 쇼핑몰에서 회원 가입 후 생일 쿠폰을 보내거나,\n  장바구니를 놓친 고객에게 알림 메시지를 보내는\n  활동\n- 고객 행동 데이터를 기반으로\n  추천 상품을 보여주는 맞춤형 광고",
+        why:"신규 유입보다 적은 비용으로\n매출과 충성도를 동시에 높일 수 있다."
+      },
+     {
+  term:"9. 퍼포먼스 마케팅",
+  lead:"성과로 평가하는 마케팅",
+  meaning:"클릭, 전환, 매출 등\n숫자로 성과를 측정하는 마케팅",
+  desc:
+"1. 정관장\n\n" +
+"브랜드 인지도 증대와 실제적 매출 전환을 위한 콘텐츠 제작\n\n" +
+"코로나 대유행으로 건강 기능 식품 시장 규모가 5년 새 약 20% 성장하며\n" +
+"경쟁 브랜드 증가로 정관장의 시장 점유율이 위협받는 상황이 발생.\n" +
+"또한 주요 판매 채널이던 면세점 매출 급감으로\n" +
+"디지털 채널 세일즈 극대화가 필요한 상황.\n\n" +
+"- 설 선물 시즌 브랜드 인지도 증대와 대세감 형성을 목표로\n" +
+"  공감·흥미 요소를 담은 뮤지컬 형식의 영상 크리에이티브 제작 (YouTube)\n\n" +
+"- 자사몰 유입 증대를 위해 Display AD 집행 및\n" +
+"  정관장몰 쿠폰 100% 지급 프로모션 기획\n\n" +
+"  · 쿠폰을 자사몰에 등록 시 당첨 확률 증가 조건 추가\n" +
+"  · 신규 회원 가입 유도 + 기존 회원 Active User 전환 설계\n\n" +
+"[성과]\n" +
+"1) 명절 선물 카테고리 SOV 83% 1위 달성 (21년 명절 SOV 45%)\n" +
+"2) 캠페인 타겟(MF25-54) 기준 46% Unique Reach 달성\n" +
+"3) 정관장몰 클릭 363,627회 발생 (KPI 대비 182.7% 초과)\n" +
+"4) GA 기준 캠페인 연계 매출 전년 설 대비 317% 상승\n" +
+" (ROAS 12% → 21% 상승)",
+  why:"성과 지표를 기준으로\n광고·콘텐츠·프로모션을 빠르게 개선할 수 있어\n매출과 효율을 동시에 관리할 수 있다."
+}
+    ];
+
     const cards = document.getElementById("cards");
     const detail = document.getElementById("detail");
     const home = document.getElementById("home");
@@ -432,7 +467,6 @@
       dDesc.innerText = t.desc;
       dWhy.innerText = t.why;
 
-      // ✅ 뜻 박스 이미지(SEO/ AARRR만 표시)
       if(t.meaningImage){
         dMeaningImg.src = t.meaningImage;
         dMeaningImg.alt = t.term + " 이미지";
@@ -456,7 +490,6 @@
       </div>
     `).join("");
 
-    // Subtle roles dialog (footer)
     const rolesDialog = document.getElementById("rolesDialog");
     const openRoles = document.getElementById("openRoles");
     const closeRoles = document.getElementById("closeRoles");
@@ -474,11 +507,10 @@
     closeRoles.addEventListener("click", closeDialog);
     rolesDialog.addEventListener("click", (e)=>{
       const rect = rolesDialog.getBoundingClientRect();
-      const isInDialog = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right;
+      const isInDialog = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientY && e.clientY <= rect.right;
       if(!isInDialog) closeDialog();
     });
 
-    // Brand header keyboard support
     document.querySelector(".brand").addEventListener("keydown", (e)=>{
       if(e.key==="Enter"||e.key===" "){ e.preventDefault(); showHome(); }
     });
